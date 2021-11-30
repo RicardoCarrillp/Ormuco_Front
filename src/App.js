@@ -35,7 +35,6 @@ function App() {
 
 
 const submit = e => {
-  e.preventDefault()
   const data2={
     name:name
   }
@@ -43,15 +42,18 @@ const submit = e => {
   fetch("http://127.0.0.1:5000/server", {
     method: 'POST',
     body: JSON.stringify(data2),
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Auth-Token':'gAAAAABhpksg84NObVa5ddQ-AWx-v6nWlUhHbjRm1SYarU7DLPPqu2Kr8SNjhbwd7_4NpX7_j_4enHMIA_CnfOU6M5gZpfeWODc9gWQJvKcfZH8tIuHUjrsGMNCK-u5qVHNnGkNgI_TYyWTqq7qf5n7N9n7RdgxSeowKbNA1GN7KUR8ZbjiSp7EtzYrSaAzgM_wi07dPNRux'
+    },
     
   })
+    .then(res => res.json())
     .then(response => console.log(response))
-    .then(data => console.log(data))
-    .then(fetchData())
-    .then(setName(''))
-    .catch(error => console.error('Unable to get items.', error));
-
+  
+   
 }
+
 
   return (
     <div>
